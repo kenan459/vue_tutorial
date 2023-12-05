@@ -1,51 +1,44 @@
 const app = Vue.createApp({
-  data() {
-    return {
-      myClass: "",
-      classVisible: true,
-      colorStyle: "",
-    };
-  },
-
-  computed: {
-    classSet() {
-      if (this.myClass === "user1") {
-        return { user1: true };
-      } else if (this.myClass === "user2") {
-        return { user2: true };
-      }
+    data() {
+        return {
+            inputClass: '',
+            paragraphVisible: true,
+            inputColor: '',
+            myColor: '',
+        }
     },
 
-    visibilitySet() {
-      if (this.classVisible === false) {
-        return { hidden: true };
-      }
+    watcher: {
+        myColor() {
+            console.log ('append')
+        },
     },
 
-    colorSet() {
-        return { color: `${this.colorStyle}`};
+    computed: {
+        paraClasses() {
+            return {
+                user1: this.inputClass === 'user1',
+                user2: this.inputClass === 'user2',
+                visible: this.paragraphVisible,
+                hidden: !this.paragraphVisible
+            }
+        },
+
+        colorSet() {
+            return { backgroundColor: `${this.myColor}`};
+        },
+    },
+
+    methods: {
+        toggleParagraphVisibilty() {
+            this.paragraphVisible = !this.paragraphVisible;
+        },
+
+        getColor(str) {
+            console.log('log')
+              this.myColor = str.target.value;
+            },
     }
-  },
-
-  methods: {
-    inputColor(str) {
-    //   console.log(str.target.value);
-      this.colorStyle = str.target.value;
-    },
-
-    userClassEntered(str) {
-      this.myClass = str.target.value;
-    },
-
-    toggleVisibility() {
-      console.log("toggle");
-      if (this.classVisible === true) {
-        this.classVisible = false;
-      } else if (this.classVisible === false) {
-        this.classVisible = true;
-      }
-    },
-  },
 });
 
-app.mount("#assignment");
+app.mount('#assignment')
