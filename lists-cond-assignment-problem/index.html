@@ -24,12 +24,12 @@
       <button  @click="newTask">Add Task</button>
       <p v-if="tasks.length === 0 ">No tasks at the moment</p>
       <ul v-else :class="toggleShowTasks">
-        <li v-for="task in tasks">{{ task }}</li>
+        <li v-for="task in tasks" :key="task">{{ task }}</li>
         <!-- 2) Output the list of tasks here -->
       </ul>
       <!-- 3) When the below button is pressed, the list should be shown or hidden -->
       <!-- BONUS: Also update the button caption -->
-      <button @click="toggleVisible">{{ visibleText }} List</button>
+      <button @click="toggleVisible" v-if="tasks.length !== 0 ">{{ visibleText }} List</button>
     </section>
   </body>
 </html>
