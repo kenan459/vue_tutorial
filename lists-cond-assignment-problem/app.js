@@ -20,6 +20,7 @@ const app = Vue.createApp({
 
   methods: {
     newTask() {
+      console.log("test");
         this.tasks.push(this.enteredTask);
     },
 
